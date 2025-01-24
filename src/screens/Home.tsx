@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 export default function HomeScreen() {
@@ -40,7 +41,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       {/* Popular Books Section */}
-      <View style={styles.innerContainer}>
+      <ScrollView contentContainerStyle={styles.innerContainer}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Popular Story</Text>
           <TouchableOpacity>
@@ -53,7 +54,7 @@ export default function HomeScreen() {
           renderItem={renderBook}
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingTop: 20 }}
+          contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
         />
 
         {/* Recommended Section */}
@@ -69,12 +70,28 @@ export default function HomeScreen() {
           renderItem={renderBook}
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingTop: 20 }}
+          contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
         />
-      </View>
+
+        {/* Recommended Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Recommended</Text>
+          <TouchableOpacity>
+            <Text style={styles.seeAll}>See all</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={recommendedBooks}
+          horizontal
+          renderItem={renderBook}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
+        />
+      </ScrollView>
 
       {/* Bottom Audio Player */}
-      <View style={styles.audioPlayer}>
+      {/* <View style={styles.audioPlayer}>
         <Image
           source={{ uri: "https://shorturl.at/V7Hz3" }}
           style={styles.audioImage}
@@ -88,7 +105,7 @@ export default function HomeScreen() {
           </Text>
         </View>
         <Ionicons name="play-circle" size={40} color="white" />
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -97,12 +114,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#121212",
+    paddingBottom: 5,
   },
   innerContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
-    flex: 1,
     padding: 10,
   },
   section: {
