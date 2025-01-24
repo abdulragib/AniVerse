@@ -8,7 +8,10 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 export default function HomeScreen() {
   // Dummy data for books
@@ -28,20 +31,44 @@ export default function HomeScreen() {
     { id: "3", title: "Gandhi", image: "https://shorturl.at/V7Hz3" },
   ];
 
+  const carouselData = [
+    { id: "1", image: "https://shorturl.at/V7Hz3", title: "Banner 1" },
+    { id: "2", image: "https://shorturl.at/V7Hz3", title: "Banner 2" },
+    { id: "3", image: "https://shorturl.at/V7Hz3", title: "Banner 3" },
+  ];
+
+  // Render carousel item
+  const renderCarouselItem = ({ item }) => (
+    <View style={styles.carouselItem}>
+      <Image source={{ uri: item.image }} style={styles.carouselImage} />
+    </View>
+  );
+
   // Render book item
   const renderBook = ({ item }) => (
     <View style={styles.bookContainer}>
       <Image source={{ uri: item.image }} style={styles.bookImage} />
-      <Text style={styles.bookTitle} numberOfLines={2}>
-        {item.title}
-      </Text>
     </View>
   );
 
   return (
     <View style={styles.container}>
-      {/* Popular Books Section */}
       <ScrollView contentContainerStyle={styles.innerContainer}>
+        {/* Carousel Section */}
+        <View style={styles.carouselContainer}>
+          <FlatList
+            data={carouselData}
+            horizontal
+            renderItem={renderCarouselItem}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            snapToAlignment="center"
+            contentContainerStyle={{ paddingVertical: 10 }}
+          />
+        </View>
+        {/* Popular Books Section */}
+
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Popular Story</Text>
           <TouchableOpacity>
@@ -91,7 +118,7 @@ export default function HomeScreen() {
       </ScrollView>
 
       {/* Bottom Audio Player */}
-      {/* <View style={styles.audioPlayer}>
+      <View style={styles.audioPlayer}>
         <Image
           source={{ uri: "https://shorturl.at/V7Hz3" }}
           style={styles.audioImage}
@@ -105,7 +132,7 @@ export default function HomeScreen() {
           </Text>
         </View>
         <Ionicons name="play-circle" size={40} color="white" />
-      </View> */}
+      </View>
     </View>
   );
 }
@@ -114,7 +141,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#121212",
-    paddingBottom: 5,
+    paddingBottom: 50,
   },
   innerContainer: {
     display: "flex",
@@ -148,6 +175,25 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 10,
   },
+
+  carouselContainer: {
+    height: 200,
+  },
+
+  carouselItem: {
+    width: width * 0.9,
+    height: 180,
+    marginHorizontal: width * 0.02,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+
+  carouselImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+
   bookTitle: {
     color: "white",
     fontSize: 12,

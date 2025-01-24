@@ -39,4 +39,5 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
   },
+  icon:{}
 });

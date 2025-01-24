@@ -16,34 +16,55 @@ export default function HomeHeader() {
     <SafeAreaView style={styles.safeHeader}>
       {/* Profile Picture */}
       <View style={styles.header}>
-      <TouchableOpacity>
-        <Image
-          source={{
-            uri: "https://shorturl.at/V7Hz3", // Replace with actual profile image URL
+        <TouchableOpacity>
+          <Image
+            source={{
+              uri: "https://shorturl.at/V7Hz3", // Replace with actual profile image URL
+            }}
+            style={styles.profilePic}
+          />
+        </TouchableOpacity>
+
+        {/* Search Bar */}
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 15,
+            justifyContent: "baseline",
           }}
-          style={styles.profilePic}
-        />
-      </TouchableOpacity>
+        >
+          {/* Search Icon */}
+          <TouchableOpacity>
+            <Ionicons
+              name="search"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
 
-      {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <Ionicons
-          name="search"
-          size={20}
-          color="gray"
-          style={styles.searchIcon}
-        />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search your Book"
-          placeholderTextColor="gray"
-        />
-      </View>
+          {/* Language Selector */}
+          <TouchableOpacity>
+            <FontAwesome
+              name="globe"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
 
-      {/* Notification Icon */}
-      <TouchableOpacity>
-        <Ionicons name="notifications-outline" size={24} color="white" />
-      </TouchableOpacity>
+          {/* Notification Icon */}
+          <TouchableOpacity>
+            <Ionicons
+              name="diamond"
+              size={22}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
