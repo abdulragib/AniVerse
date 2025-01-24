@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#333",
     padding: 10,
     position: "absolute",
-    bottom: 10,
+    bottom: 0,
     left: 0,
     right: 0,
   },

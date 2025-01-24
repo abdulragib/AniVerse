@@ -27,7 +27,7 @@ function TabNavigator() {
           } else if (route.name === "Library") {
             iconName = "book";
           } else if (route.name === "Store") {
-            iconName = "shopping-cart";
+            iconName = "stack-exchange";
           } else if (route.name === "Setting") {
             iconName = "cog";
           }
@@ -49,9 +49,27 @@ function TabNavigator() {
           header: () => <HomeHeader />, // Add custom header
         }}
       />
-      <Tab.Screen name="Library" component={LoginScreen} />
-      <Tab.Screen name="Store" component={LoginScreen} />
-      <Tab.Screen name="Setting" component={LoginScreen} />
+      <Tab.Screen
+        name="Library"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Store"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Tab.Navigator>
   );
 }
