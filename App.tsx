@@ -1,26 +1,52 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./src/screens/Home";
-import SettingsScreen from "./src/screens/Login";
-import DetailsScreen from "./src/screens/Details";
-import { FontAwesome } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
+import { FontAwesome } from "@expo/vector-icons";
+
+import HomeScreen from "./src/screens/Home";
+import SettingsScreen from "./src/components/HomeHeader";
 import LoginScreen from "./src/screens/Login";
+import DetailsScreen from "./src/screens/Details";
+import Search from "./src/screens/Search";
 import HomeHeader from "./src/components/HomeHeader";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          header: () => <HomeHeader />, // Custom header for Home
+        }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{
+          headerShown: false, // Show header for Search screen
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{
+          headerShown: true, // Show header for Details screen
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function TabNavigator() {
   return (
     <Tab.Navigator
-      // screenOptions={{
-      //   headerShown: false, // Hides the header for all screens in Tab Navigator
-      // }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          // Set icons for each Tab
           let iconName;
           if (route.name === "Home") {
             iconName = "home";
@@ -36,17 +62,17 @@ function TabNavigator() {
         tabBarActiveTintColor: "#108554",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
-          backgroundColor: "#000", // Set the background color of the bottom tab bar
-          borderTopWidth: 0, // Optional: remove the border at the top of the tab bar
-          elevation: 5, // Optional: add shadow/elevation
+          backgroundColor: "#000",
+          borderTopWidth: 0,
+          elevation: 5,
         },
       })}
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStack} // Use the stack navigator for Home
         options={{
-          header: () => <HomeHeader />, // Add custom header
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -65,7 +91,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Setting"
-        component={LoginScreen}
+        component={SettingsScreen}
         options={{
           headerShown: false,
         }}
@@ -77,22 +103,7 @@ function TabNavigator() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            headerShown: false, // Hides the header for the Login screen
-          }}
-        />
-        <Stack.Screen
-          name="Main"
-          component={TabNavigator}
-          options={{
-            headerShown: false, // Hides the header for all screens in Tab Navigator
-          }}
-        />
-      </Stack.Navigator>
+      <TabNavigator />
     </NavigationContainer>
   );
 }

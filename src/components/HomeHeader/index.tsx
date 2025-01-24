@@ -9,9 +9,11 @@ import {
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Custom Header Component
 export default function HomeHeader() {
+  const navigation=useNavigation<any>();
   return (
     <SafeAreaView style={styles.safeHeader}>
       {/* Profile Picture */}
@@ -36,7 +38,7 @@ export default function HomeHeader() {
           }}
         >
           {/* Search Icon */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Ionicons
               name="search"
               size={24}
