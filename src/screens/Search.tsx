@@ -74,7 +74,7 @@ const SearchPage = () => {
       {/* Search Bar */}
       <View style={styles.searchBar}>
         <Ionicons
-          onPress={() => navigation.navigate("HomeScreen")}
+          onPress={() => navigation.goBack()}
           name="arrow-back-circle-outline"
           size={27}
           color="gray"

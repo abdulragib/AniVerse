@@ -12,6 +12,8 @@ import Search from "./src/screens/Search";
 import HomeHeader from "./src/components/HomeHeader";
 import DiamondStore from "./src/screens/DiamondStore";
 import PurchaseHistory from "./src/screens/PurchaseHistory";
+import Library from "./src/screens/Library";
+import MySpace from "./src/screens/MySpace";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -28,7 +30,7 @@ function TabNavigator() {
             iconName = "book";
           } else if (route.name === "Store") {
             iconName = "stack-exchange";
-          } else if (route.name === "Setting") {
+          } else if (route.name === "My Space") {
             iconName = "cog";
           }
           return <FontAwesome name={iconName} size={size} color={color} />;
@@ -51,7 +53,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Library"
-        component={LoginScreen}
+        component={Library}
         options={{
           headerShown: false,
         }}
@@ -64,8 +66,8 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Setting"
-        component={SettingsScreen}
+        name="My Space"
+        component={MySpace}
         options={{
           headerShown: false,
         }}

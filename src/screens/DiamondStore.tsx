@@ -95,6 +95,12 @@ export default function DiamondStore() {
           <Text style={styles.aboutText}>
             • Buying diamonds is safe and trusted by millions of users
           </Text>
+          <Text style={styles.aboutText}>
+            • Diamonds cannot be transferred between accounts
+          </Text>
+          <Text style={styles.aboutText}>
+            • You can also earn free diamonds by watching ads.
+          </Text>
         </View>
       </View>
     </SafeAreaView>
