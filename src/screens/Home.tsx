@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   View,
@@ -14,6 +15,7 @@ import {
 const { width } = Dimensions.get("window");
 
 export default function HomeScreen() {
+  const navigation = useNavigation<any>();
   // Dummy data for books
   const popularBooks = [
     { id: "1", title: "Rich Dad Poor Dad", image: "https://shorturl.at/V7Hz3" },
@@ -46,9 +48,12 @@ export default function HomeScreen() {
 
   // Render book item
   const renderBook = ({ item }) => (
-    <View style={styles.bookContainer}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("SeriesOverview")}
+      style={styles.bookContainer}
+    >
       <Image source={{ uri: item.image }} style={styles.bookImage} />
-    </View>
+    </TouchableOpacity>
   );
 
   return (

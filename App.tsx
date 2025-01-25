@@ -14,6 +14,7 @@ import DiamondStore from "./src/screens/DiamondStore";
 import PurchaseHistory from "./src/screens/PurchaseHistory";
 import Library from "./src/screens/Library";
 import MySpace from "./src/screens/MySpace";
+import SeriesOverview from "./src/screens/SeriesOverview";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -114,8 +115,8 @@ export default function App() {
         />
 
         <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
+          name="SeriesOverview"
+          component={SeriesOverview}
           options={{
             headerShown: false, // Show header for Details screen
           }}
