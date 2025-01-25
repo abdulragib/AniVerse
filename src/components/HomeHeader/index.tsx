@@ -1,23 +1,44 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
-  StyleSheet,
   TouchableOpacity,
   Image,
+  StyleSheet,
+  FlatList,
 } from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { styles } from "./style";
 import { SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Modal from "react-native-modal";
+import { styles } from "./style";
 
-// Custom Header Component
 export default function HomeHeader() {
-  const navigation=useNavigation<any>();
+  const navigation = useNavigation<any>();
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const languages = [
+    { id: "1", name: "English" },
+    { id: "2", name: "Spanish" },
+    { id: "3", name: "French" },
+    { id: "4", name: "German" },
+    { id: "5", name: "Hindi" },
+    { id: "6", name: "Chinese" },
+  ];
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleLanguageSelect = (language: string) => {
+    console.log("Selected Language:", language);
+    toggleModal();
+  };
+
   return (
     <SafeAreaView style={styles.safeHeader}>
-      {/* Profile Picture */}
       <View style={styles.header}>
+        {/* Profile Picture */}
         <TouchableOpacity>
           <Image
             source={{
@@ -27,16 +48,8 @@ export default function HomeHeader() {
           />
         </TouchableOpacity>
 
-        {/* Search Bar */}
-
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: 15,
-            justifyContent: "baseline",
-          }}
-        >
+        {/* Icons */}
+        <View style={styles.iconsContainer}>
           {/* Search Icon */}
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Ionicons
@@ -48,7 +61,7 @@ export default function HomeHeader() {
           </TouchableOpacity>
 
           {/* Language Selector */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={toggleModal}>
             <FontAwesome
               name="globe"
               size={24}
@@ -58,7 +71,7 @@ export default function HomeHeader() {
           </TouchableOpacity>
 
           {/* Notification Icon */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Store")}>
             <Ionicons
               name="diamond"
               size={22}
@@ -68,6 +81,29 @@ export default function HomeHeader() {
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Bottom Sheet Modal */}
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={toggleModal}
+        style={styles.modalContainer}
+      >
+        <View style={styles.modalContent}>
+          <Text style={styles.modalTitle}>Select Language</Text>
+          <FlatList
+            data={languages}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.languageOption}
+                onPress={() => handleLanguageSelect(item.name)}
+              >
+                <Text style={styles.languageText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }

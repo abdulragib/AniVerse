@@ -10,6 +10,7 @@ import LoginScreen from "./src/screens/Login";
 import DetailsScreen from "./src/screens/Details";
 import Search from "./src/screens/Search";
 import HomeHeader from "./src/components/HomeHeader";
+import DiamondStore from "./src/screens/DiamondStore";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -84,7 +85,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Store"
-        component={LoginScreen}
+        component={DiamondStore}
         options={{
           headerShown: false,
         }}
@@ -103,7 +104,24 @@ function TabNavigator() {
 export default function App() {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <Stack.Navigator>
+        {/* Login Screen */}
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            headerShown: false, // Hide tabs on Login
+          }}
+        />
+        {/* Main App with Tabs */}
+        <Stack.Screen
+          name="Main"
+          component={TabNavigator}
+          options={{
+            headerShown: false, // Hide header for the tab navigator
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  safeHeader:{
+  safeHeader: {
     backgroundColor: "#000",
   },
   header: {
@@ -39,5 +39,39 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
   },
-  icon:{}
+  icon: {},
+
+  iconsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 15,
+    justifyContent: "baseline",
+  },
+
+  modalContainer: {
+    justifyContent: "flex-end",
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: "#333",
+    padding: 20,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    maxHeight: "50%",
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color:"#fff"
+  },
+  languageOption: {
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+  },
+  languageText: {
+    fontSize: 16,
+    color: "#fff",
+  },
 });
