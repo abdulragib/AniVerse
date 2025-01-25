@@ -85,15 +85,15 @@ export default function DiamondStore() {
 
         {/* About Coins */}
         <View style={styles.aboutSection}>
-          <Text style={styles.sectionTitle}>ABOUT COINS</Text>
+          <Text style={styles.sectionTitle}>ABOUT DIAMONDS</Text>
           <Text style={styles.aboutText}>
-            • Your coins never expire — they are yours for life
+            • Your diamonds never expire — they are yours for life
           </Text>
           <Text style={styles.aboutText}>
-            • Use your coins to unlock episodes of any series
+            • Use your diamonds to unlock episodes of any series
           </Text>
           <Text style={styles.aboutText}>
-            • Buying coins is safe and trusted by millions of users
+            • Buying diamonds is safe and trusted by millions of users
           </Text>
         </View>
       </View>

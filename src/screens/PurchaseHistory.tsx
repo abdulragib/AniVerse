@@ -73,7 +73,10 @@ const PurchaseHistory = () => {
             <Text style={styles.description}>
               Once you use diamonds, you'll see all the details here
             </Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.button}
+            >
               <Text style={styles.buttonText}>Back to Store</Text>
             </TouchableOpacity>
           </View>
@@ -83,7 +86,10 @@ const PurchaseHistory = () => {
             <Text style={styles.description}>
               Once you add diamonds, you'll see all the details here
             </Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.button}
+            >
               <Text style={styles.buttonText}>Back to Store</Text>
             </TouchableOpacity>
           </View>
