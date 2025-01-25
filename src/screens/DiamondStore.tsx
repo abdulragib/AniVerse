@@ -10,6 +10,7 @@ import {
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
 const coinPacks = [
   { id: "1", bonus: "150% BONUS", coins: 80, freeCoins: 120, price: "₹39" },
@@ -20,6 +21,8 @@ const coinPacks = [
 ];
 
 export default function DiamondStore() {
+  const navigation = useNavigation<any>();
+
   const renderItem = ({ item }) => (
     <View style={styles.packContainer}>
       <View style={styles.coinInfo}>
@@ -61,7 +64,12 @@ export default function DiamondStore() {
             >
               500
             </Text>
-            <FontAwesome5 name="arrow-right" size={16} color="#fff" />
+            <FontAwesome5
+              onPress={() => navigation.navigate("PurchaseHistory")}
+              name="arrow-right"
+              size={16}
+              color="#fff"
+            />
           </View>
         </LinearGradient>
 
@@ -174,7 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   priceButton: {
-    backgroundColor: "#222",
+    backgroundColor: "#333",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,

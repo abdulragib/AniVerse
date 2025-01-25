@@ -11,37 +11,10 @@ import DetailsScreen from "./src/screens/Details";
 import Search from "./src/screens/Search";
 import HomeHeader from "./src/components/HomeHeader";
 import DiamondStore from "./src/screens/DiamondStore";
+import PurchaseHistory from "./src/screens/PurchaseHistory";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-function HomeStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          header: () => <HomeHeader />, // Custom header for Home
-        }}
-      />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-        options={{
-          headerShown: false, // Show header for Search screen
-        }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={DetailsScreen}
-        options={{
-          headerShown: true, // Show header for Details screen
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 function TabNavigator() {
   return (
@@ -71,9 +44,9 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeStack} // Use the stack navigator for Home
+        component={HomeScreen} // Use the stack navigator for Home
         options={{
-          headerShown: false,
+          header: () => <HomeHeader />, // Custom header for Home
         }}
       />
       <Tab.Screen
@@ -119,6 +92,30 @@ export default function App() {
           component={TabNavigator}
           options={{
             headerShown: false, // Hide header for the tab navigator
+          }}
+        />
+
+        <Stack.Screen
+          name="PurchaseHistory"
+          component={PurchaseHistory}
+          options={{
+            headerShown: false, // Show header for Details screen
+          }}
+        />
+
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{
+            headerShown: false, // Show header for Search screen
+          }}
+        />
+
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{
+            headerShown: false, // Show header for Details screen
           }}
         />
       </Stack.Navigator>
